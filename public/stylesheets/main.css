@@ -1,0 +1,129 @@
+.main-container {
+	display: grid;
+	grid-gap: 20px;
+	margin: 40px;
+	background: white;
+}
+
+.top-container {
+	height: 15vh;
+	background: lightgrey;
+	text-align: center;
+}
+
+.middle-container {
+	height: 60vh;
+}
+
+.bottom-container {
+	height: 25vh;
+	background: lightgrey;
+	text-align: center;
+}
+
+.a-center {
+	text-align: center;
+}
+
+.a-left {
+	text-align: left;
+}
+
+.showform {
+  display: grid;
+  padding: 1em;
+  background: lightgrey;
+  border: 1px solid #c1c1c1;
+  margin: 2rem auto 0 auto;
+  max-width: 600px;
+}
+.showform input {
+  background: #fff;
+  border: 1px solid #9c9c9c;
+}
+
+
+.stdbluebtn {
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #4287f5;
+  color: white;
+}
+
+.smallbluebtn {
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #4287f5;
+  color: white;
+}
+
+
+.tdbutton {
+  width: 100px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #4287f5;
+  color: white;
+}
+
+.tdedit {
+  width: 100px;
+  text-align: center;
+}
+
+
+label {
+  padding: 0.5em 0.5em 0.5em 0;
+}
+
+input {
+  padding: 0.7em;
+  margin-bottom: 0.5rem;
+}
+input:focus {
+  outline: 3px solid gold;
+}
+
+.employees {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.employees td, .employees th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.employees tr:nth-child(even){background-color: #f2f2f2;}
+
+.employees tr:hover {background-color: #ddd;}
+
+.employees th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #48679c;
+  color: white;
+}
+
+@media (min-width: 400px) {
+  form {
+    grid-template-columns: 200px 1fr;
+    grid-gap: 16px;
+  }
+
+  label {
+    text-align: right;
+    grid-column: 1 / 2;
+  }
+
+  input,
+  button {
+    grid-column: 2 / 3;
+  }
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="/stylesheets/main.css">
+    <title>Node.js MySQL CRUD application</title>
+</head>
+<body>
+	<div class="main-container">
+		<div class="top-container">
+			<h1>
+				Simple Node.js MySQL CRUD application<br>
+			</h1>
+			<h3>
+				List employees
+			</h3>			
+		</div>
+		<div class="a-left">
+				<form action="/employees/new" method="GET">
+						<button class="stdbluebtn">Add New Employee</button>
+				</form>
+		</div>
+		
+		<div class="middle-container">
+				<table class="employees">
+				  <tr>
+					<th align="left">Emp Id</th>
+					<th align="left">Firstname</th>
+					<th align="left">Lastname</th> 
+					<th align="left">Dept</th>
+				  </tr>
+
+					<% employees.forEach(function(employee){ %>
+						<tr>
+							<td><%= employee.EmpId %></td>
+							<td><%= employee.Fname %></td>  
+							<td><%= employee.Lname %></td>
+							<td><%= employee.DeptId %></td>
+							<td class="tdedit">
+								<form action="/employees/<%=employee.EmpId%>/edit" method="GET">
+									<button class = "tdbutton">Edit</button>
+								</form>
+							</td>
+							<td class="tdedit">
+								<form action="/employees/<%=employee.EmpId%>?_method=DELETE" method="POST">
+									<button class = "tdbutton">Delete</button>
+								</form>
+							</td>
+						 </tr>
+					<% }) %>;
+				</table>
+		</div>
+		<div class="bottom-container">
+			<h3>
+				Developed by UMR <br>
+				More features will be added later
+			</h3>			
+		</div>
+	</div>
+</body>
+</html>
+    
+    

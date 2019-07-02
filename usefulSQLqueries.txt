@@ -1,0 +1,133 @@
+# 
+# database clone of very simple and basic instagram type of application
+# Table definitions at the top followed by some useful SQL queries for data manipulation
+# Create your own data and load into tables before running the queries
+# 
+# At the bottom of this page there are some useful generic SQL queries. These are not related to the tables defined below. 
+# Just some useful queries which serve as SQL quick reference
+# 
+DROP DATABASE IF EXISTS IGC01;
+CREATE DATABASE IGC01;
+USE IGC01; 
+
+CREATE TABLE users (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE photos (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    image_url VARCHAR(255) NOT NULL,
+    user_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+CREATE TABLE comments (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    comment_text VARCHAR(255) NOT NULL,
+    photo_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY(photo_id) REFERENCES photos(id),
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+CREATE TABLE likes (
+    user_id INTEGER NOT NULL,
+    photo_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY(user_id) REFERENCES users(id),
+    FOREIGN KEY(photo_id) REFERENCES photos(id),
+    PRIMARY KEY(user_id, photo_id)
+);
+
+CREATE TABLE follows (
+    follower_id INTEGER NOT NULL,
+    followee_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY(follower_id) REFERENCES users(id),
+    FOREIGN KEY(followee_id) REFERENCES users(id),
+    PRIMARY KEY(follower_id, followee_id)
+);
+
+CREATE TABLE tags (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  tag_name VARCHAR(255) UNIQUE,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE photo_tags (
+    photo_id INTEGER NOT NULL,
+    tag_id INTEGER NOT NULL,
+    FOREIGN KEY(photo_id) REFERENCES photos(id),
+    FOREIGN KEY(tag_id) REFERENCES tags(id),
+    PRIMARY KEY(photo_id, tag_id)
+);
+
+# Find five users who have been around the longest time
+
+select * from users order by created_at asc limit 5;
+
+# What day of week do most users register on
+
+select dayofweek(created_at), dayname(created_at), count(*) from users group by dayofweek(created_at) order by count(*) desc;
+
+
+# Find users who have never posted a photo. Two ways of doint it below.
+
+select id from users where users.id not in (select user_id from photos);
+
+select users.id from users left join photos on users.id = photos.user_id where photos.user_id is NULL;
+
+# Find the top 5 most liked photos and the corresponding usernames who created the photos
+select users.username, photos.user_id, photo_id, count(*) from likes inner join photos on photo_id = id inner join users on photos.user_id = users.id group by photo_id order by count(*) DESC limit 5;
+
+# *********** select average posts per user **************************
+select (select count(*) from photos) / (select count(*) from users) as avg;
+
+# top 5 commonly used tags
+select tag_name, count(*) from photo_tags inner join tags on tag_id = id group by tag_id order by count(*) DESC limit 5;
+
+# select users who have liked every single photo
+
+SELECT username, 
+       Count(*) AS num_likes 
+FROM   users 
+       INNER JOIN likes 
+               ON users.id = likes.user_id 
+GROUP  BY likes.user_id 
+HAVING num_likes = (SELECT Count(*) 
+                    FROM   photos); 
+
+# 
+# some useful SQL queries below. These are generic and not related to the database define above
+# 
+
+select replace("hello world", "ell", "kk") => this will replace ell with kk
+
+select reverse("jklm") => will give result "mlkj"
+
+select CHAR_LENGTH(lname) gives length of lname field data
+
+select CHAR_LENGTH("abcde") gives result 5
+
+select UPPER(fname) => gives result in uppercase
+
+select LOWER(fname) => gives result in lowercase
+
+SELECT SKIP 20 c1, c2 FROM tab ORDER BY c3 LIMIT 10; =>DB2
+
+LIMIT in MySQL  is same as FETCH FIRST NN ROWS ONLY in DB2;
+
+use LOWER and UPPER with LIKE if you want case sensitive selection
+
+SELECT MAX(pages), title FROM books; => this will give max pages and then the title of the first book in selection and not the book that has max pages!!;
+one way to do above but inefficient performance=> select title, pages from books where pages =(select max(pages) from books);
+better query for above => select title, pages from books order by pages desc limit 1;
+
+select author_fname, min(released_year) group by author_fname, author_lname; => gives the earliest book published by each author;
+
+select author_fname, sum(pages),avg(pages), count(*) from books group by author_fname, author_lname; => gives total pages, avg pages and count of books;
+

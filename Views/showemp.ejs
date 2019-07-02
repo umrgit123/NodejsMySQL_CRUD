@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="/stylesheets/main.css">
+    <title>MYSQL Nodejs CRUD</title>
+</head>
+<body>
+	<div class="main-container">
+		<div class="top-container">
+			<h1>
+				Simple Node.js MySQL CRUD application<br>
+			</h1>
+			<h3>
+				Edit Employee
+			</h3>			
+		</div>
+		<div class="middle-container">
+		   <form class ="showform" action="/employees/<%=employee.EmpId%>?_method=PUT" method="POST">
+				<label for="empid" class="empid">Employee Id</label>
+				<input type="text" name="empid" value="<%=employee.EmpId%>" readonly>
+
+				<label for="firstname" class="firstname">First Name</label>
+				<input type="text" name="firstname" value="<%=employee.Fname%>">
+
+				<label for="lastname" class="lastname">Last Name</label>
+				<input type="text" name="lastname" value="<%=employee.Lname%>">
+
+				<label for="dept">Department</label>
+						<select name="dept">
+						  <option selected="selected"><%=employee.DeptId%></option>
+						  <option value="01">IT</option>
+						  <option value="02">Payroll</option>
+						  <option value="03">Admin</option>
+						  <option value="99">Other</option>
+						</select>
+				<button class="smallbluebtn">Submit</button>
+			</form>
+			<br>
+			<div class="a-center">
+				<form action="/employees" method="GET">
+						<button class="stdbluebtn">Go Back</button>
+				</form>
+			</div>
+		</div>
+		<div class="bottom-container">
+			<h3>
+				Developed by UMR <br>
+				More features will be added later
+			</h3>			
+		</div>
+	</div>	
+</body>
+</html>
+    

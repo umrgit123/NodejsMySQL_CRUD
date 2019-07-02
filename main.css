@@ -1,0 +1,184 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  background-color: lightgrey;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.jumbotron {
+  background-color: #E5E8E8;
+}
+
+
+
+.thumbnail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+  grid-template-rows: 300px;
+}
+
+.thumbnail-size {
+  display: grid;
+  grid-template-rows: 200px 50px 50px;
+}
+
+.thumbnail-size img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+.showbox {
+  display: grid;
+  grid-gap: 15px;
+  padding: 5px;
+}
+
+.showbox {
+  background-color: white;
+}
+
+
+.showimage {
+  width: 50%;
+  height: 20vw;
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.textjustify {
+  text-align: justify;
+}
+
+/* Google Map styles */
+#map {
+	height: 400px;
+	width: 100%;
+}
+
+/* Campground show page delete button */
+.delete-form {
+	display: inline-block;
+}
+
+/* Flexbox grid fix */
+ .flex-wrap { 
+  display:flex; 
+  flex-wrap: wrap; 
+ } 
+
+.navbar-default {
+  background-color: #69899f;
+  border-color: #425766;
+}
+ 
+.navbar-default .navbar-brand {
+  color: #d7e2e9;
+}
+ 
+.navbar-default .navbar-text {
+  color: #d7e2e9;
+}
+ 
+.navbar-default .navbar-nav > li > a {
+  color: #d7e2e9;
+}
+ 
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #e5dbdb;
+}
+ 
+.navbar-default .navbar-nav > li > .dropdown-menu {
+  background-color: #69899f;
+}
+ 
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+  color: #d7e2e9;
+}
+ 
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+ 
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+  color: #e5dbdb;
+  background-color: #425766;
+}
+ 
+.navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+  background-color: #69899f;
+}
+ 
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #e5dbdb;
+  background-color: #425766;
+}
+ 
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #e5dbdb;
+  background-color: #425766;
+}
+ 
+.navbar-default .navbar-toggle {
+  border-color: #425766;
+}
+ 
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #425766;
+}
+ 
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #d7e2e9;
+}
+ 
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #d7e2e9;
+}
+ 
+.navbar-default .navbar-link {
+  color: #d7e2e9;
+}
+ 
+.navbar-default .navbar-link:hover {
+  color: #e5dbdb;
+}
+ 
+
+@media(max-width: 700px) {
+    .thumbnail {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 15px;
+        grid-template-rows: 300px;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #d7e2e9;
+  }
+ 
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #e5dbdb;
+  }
+ 
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #e5dbdb;
+    background-color: #425766;
+  }
+}
